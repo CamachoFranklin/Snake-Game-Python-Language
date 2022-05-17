@@ -38,14 +38,38 @@ serpiente.direction = 'stop'
 # Se le asigna el color a la serpiente
 serpiente.color('green')
 
+# Se crea la función que va a determinar el movimiento hacia arriba
+def arriba():
+
+    # Se le asigna el movimiento hacia arriba a la variable
+    serpiente.direction = 'up'
+
+# Se crea la función que va a determinar el movimiento hacia arriba
+def abajo():
+
+    # Se le asigna el movimiento hacia abajo a la variable
+    serpiente.direction = 'down'
+
+# Se crea la función que va a determinar el movimiento hacia la derecha
+def derecha():
+
+    # Se le asigna el movimiento hacia la derecha a la variable
+    serpiente.direction = 'right'
+
+# Se crea la función que va a determinar el movimiento hacia la izquierda
+def izquierda():
+
+    # Se le asigna el movimiento hacia la izquierda a la variable
+    serpiente.direction = 'left'
+
 # Se crea la función de movimiento
 def movimiento():
 
     # Se crea la condición para el caso en que la serpiente se mueva hacia arriba
     if serpiente.direction == 'up':
 
-        # La función ycord devuelve la coordenada de la serpiente en el eje Y
-        y = serpiente.ycord()
+        # La función ycor devuelve la coordenada de la serpiente en el eje Y
+        y = serpiente.ycor()
 
         # La función sety mueve un objeto en el eje Y, a la posición actual se le suman 20 pixeles.
         serpiente.sety(y + 20)
@@ -53,8 +77,8 @@ def movimiento():
     # Se crea la condición para el caso en que la serpiente se mueva hacia abajo
     if serpiente.direction == 'down':
 
-        # La función ycord devuelve la coordenada de la serpiente en el eje Y
-        y = serpiente.ycord()
+        # La función ycor devuelve la coordenada de la serpiente en el eje Y
+        y = serpiente.ycor()
 
         # La función sety mueve un objeto en el eje Y, a la posición actual se le restan 20 pixeles.
         serpiente.sety(y - 20)
@@ -62,8 +86,8 @@ def movimiento():
     # Se crea la condición para el caso en que la serpiente se mueva hacia la derecha
     if serpiente.direction == 'right':
 
-        # La función xcord devuelve la coordenada de la serpiente en el eje X
-        x = serpiente.xcord()
+        # La función xcor devuelve la coordenada de la serpiente en el eje X
+        x = serpiente.xcor()
 
         # La función setx mueve un objeto en el eje X, a la posición actual se le suman 20 pixeles.
         serpiente.setx(x + 20)
@@ -71,11 +95,20 @@ def movimiento():
     # Se crea la condición para el caso en que la serpiente se mueva hacia arriba
     if serpiente.direction == 'left':
 
-        # La función xcord devuelve la coordenada de la serpiente en el eje X
-        x = serpiente.xcord()
+        # La función xcor devuelve la coordenada de la serpiente en el eje X
+        x = serpiente.xcor()
 
         # La función setx mueve un objeto en el eje X, a la posición actual se le restan 20 pixeles.
         serpiente.setx(x - 20)
+
+# La función Listen prepara la pantalla para una interacción del teclado
+screen.listen()
+
+# onkeypress recibe por parametro la función que activará al presionar la tecla indicada
+screen.onkeypress(arriba, "Up")
+screen.onkeypress(abajo, "Down")
+screen.onkeypress(derecha, "Right")
+screen.onkeypress(izquierda, "Left")
 
 # Ciclo que actualiza la pantalla con cada movimiento de la serpiente
 while True:
