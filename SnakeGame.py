@@ -1,5 +1,4 @@
 # Importamos las librerias a utilizar
-from cgitb import text
 import turtle
 import time
 import random
@@ -20,10 +19,13 @@ screen = turtle.Screen()
 screen.setup(650 , 650)
 
 # Se le coloca el color al fondo
-screen.bgcolor('grey')
+screen.bgcolor('black')
 
 # Cambiamos el nombre a la ventana
 screen.title('Snake Game "La culebrita" - Proyecto Programacion III (Grupo 5)')
+
+# La función tracer mejora la animación en pantalla
+screen.tracer(0)
 
 # Se crea el objeto de la serpiente (snake)
 serpiente = turtle.Turtle()
@@ -44,7 +46,7 @@ serpiente.goto(0 , 0)
 serpiente.direction = 'stop'
 
 # Se le asigna el color a la serpiente
-serpiente.color('green')
+serpiente.color('white')
 
 # Se instancia el objeto de "comida"
 comida = turtle.Turtle()
@@ -53,7 +55,7 @@ comida = turtle.Turtle()
 comida.shape('circle')
 
 # Se le asigna el color a la comida
-comida.color('orange')
+comida.color('red')
 
 # Se usa la función penup para que la "comida" no vaya a dibujar el rastro por donde pasa
 comida.penup()
@@ -74,7 +76,7 @@ texto = turtle.Turtle()
 texto.speed(0)
 
 # Se le asigna el color al color al texto
-texto.color('black')
+texto.color('white')
 
 # Se usa la función penup para que el texto no vaya a dibujar el rastro por donde pasa
 texto.penup()
@@ -226,7 +228,7 @@ while True:
         nuevoCuerpo.shape('square')
 
         # Se le asigna el color al nuevoCuerpo
-        nuevoCuerpo.color('green')
+        nuevoCuerpo.color('gray')
 
         # Se usa la función penup para que el "nuevoCuerpo" no vaya a dibujar el rastro por donde pasa
         nuevoCuerpo.penup()
@@ -239,7 +241,7 @@ while True:
 
         # Se le agrega a la lista "Cuerpo" el objeto "Nuevo cuerpo"
         cuerpo.append(nuevoCuerpo)
-
+        
         # Por cada comida que tenga contacto con la serpiente se suman 10 puntos
         puntaje += 10
 
@@ -249,6 +251,17 @@ while True:
             # Si se cumple la condición se actualiza el puntaje alto
             puntajeAlto = puntaje
             
+            # Se limpia el texto
+            texto.clear()
+
+            # Se actualizan los puntajes
+            texto.write(f"Puntaje: {puntaje}\tPuntaje más alto: {puntajeAlto}",
+            align="center",
+            font=("verdana", 12, "normal"))
+
+        # Si el puntaje actual, es menor al puntaje más alto, se cumple la siguiente sentencia
+        if puntaje < puntajeAlto:
+
             # Se limpia el texto
             texto.clear()
 
@@ -311,6 +324,17 @@ while True:
 
             # Se le indica a la serpiente que debe permanecer estática
             serpiente.direction = 'stop'
+
+            # Se reinicia el puntaje
+            puntaje = 0
+
+            # Se limpia el texto
+            texto.clear()
+
+            # Se actualizan los puntajes
+            texto.write(f"Puntaje: {puntaje}\tPuntaje más alto: {puntajeAlto}",
+            align="center",
+            font=("verdana", 12, "normal"))
 
     # Se agrega un delay al movimiento de la serpiente
     time.sleep(retraso)
