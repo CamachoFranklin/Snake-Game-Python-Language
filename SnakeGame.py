@@ -1,10 +1,17 @@
 # Importamos las librerias a utilizar
+from cgitb import text
 import turtle
 import time
 import random
 
 # Se crea una variable que indicará el tiempo en que se moverá la serpiente
 retraso = 0.1
+
+# Se crea la variable marcador
+puntaje = 0
+
+# Se crea la variable para el puntaje más alto
+puntajeAlto = 0
 
 # Se crea el lienzo donde estará corriendo el juego
 screen = turtle.Screen()
@@ -59,6 +66,29 @@ comida.speed(0)
 
 # Se crea una lista (vector) vacío que contendrá el cuerpo.
 cuerpo = []
+
+# Se crea un objeto llamado texto
+texto = turtle.Turtle()
+
+# Se le asigna la velocidad de 0 al texto
+texto.speed(0)
+
+# Se le asigna el color al color al texto
+texto.color('black')
+
+# Se usa la función penup para que el texto no vaya a dibujar el rastro por donde pasa
+texto.penup()
+
+# Se oculta el icono del objeto 
+texto.hideturtle()
+
+# Se asigna la posición estática
+texto.goto(0 , -260)
+
+""" Se hace uso de la función write que muestra un mensaje, le agrega una posición y además
+asigna el tipo de fuente, su tamaño y en caso de no existir la fuente seleccionada, ocupa
+la por defecto """
+texto.write("Puntaje: 0\tPuntaje más alto: 0", align = "center", font=("verdana", 12, "normal"))
 
 # Se crea la función que va a determinar el movimiento hacia arriba
 def arriba():
@@ -166,6 +196,17 @@ while True:
         # Se elimina el cuerpo
         cuerpo.clear()
 
+        # Se reinicia el puntaje
+        puntaje = 0
+
+        # Se limpia el texto
+        texto.clear()
+
+        # Se actualizan los puntajes
+        texto.write(f"Puntaje: {puntaje}\tPuntaje más alto: {puntajeAlto}",
+        align="center",
+        font=("verdana", 12, "normal"))
+
     # Se crea un ciclo que genera coordenadas (x,y) aleatorias si la comida y la serpiente tienen contacto
     if serpiente.distance(comida) < 20:
 
@@ -198,6 +239,23 @@ while True:
 
         # Se le agrega a la lista "Cuerpo" el objeto "Nuevo cuerpo"
         cuerpo.append(nuevoCuerpo)
+
+        # Por cada comida que tenga contacto con la serpiente se suman 10 puntos
+        puntaje += 10
+
+        # Si el puntaje actual, es mayor al puntaje más alto, se cumple la siguiente sentencia
+        if puntaje > puntajeAlto:
+
+            # Si se cumple la condición se actualiza el puntaje alto
+            puntajeAlto = puntaje
+            
+            # Se limpia el texto
+            texto.clear()
+
+            # Se actualizan los puntajes
+            texto.write(f"Puntaje: {puntaje}\tPuntaje más alto: {puntajeAlto}",
+            align="center",
+            font=("verdana", 12, "normal"))
 
     # Se crea una variable "total" que devuelva la medida del cuerpo
     total = len(cuerpo)
