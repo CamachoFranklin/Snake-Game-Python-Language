@@ -1,6 +1,7 @@
 # Importamos las librerias a utilizar
 import turtle
 import time
+import random
 
 # Se crea una variable que indicará el tiempo en que se moverá la serpiente
 retraso = 0.1
@@ -37,6 +38,24 @@ serpiente.direction = 'stop'
 
 # Se le asigna el color a la serpiente
 serpiente.color('green')
+
+# Se instancia el objeto de "comida"
+comida = turtle.Turtle()
+
+# Se le asigna la forma a la comida en este caso 'circle' = circulo
+comida.shape('circle')
+
+# Se le asigna el color a la comida
+comida.color('orange')
+
+# Se usa la función penup para que la "comida" no vaya a dibujar el rastro por donde pasa
+comida.penup()
+
+# Se envia la comida al punto dado al comienzo del juego
+comida.goto(0 , 100)
+
+# Se agrega una rapidez de 0 a la comida
+comida.speed(0)
 
 # Se crea la función que va a determinar el movimiento hacia arriba
 def arriba():
@@ -115,6 +134,18 @@ while True:
 
     # Actualizamos la pantalla con cada movimiento de la serpiente
     screen.update()
+
+    # Se crea un ciclo que genera coordenadas (x,y) aleatorias si la comida y la serpiente tienen contacto
+    if serpiente.distance(comida) < 20:
+
+        # Se genera el valor aleatorio de la coordenada "X"
+        x = random.randint(-250 , 250)
+        
+        # Se genera el valor aleatorio de la coordenada "Y"
+        y = random.randint(-250 , 250)
+
+        # La comida es enviada a las coordenadas aleatorias dentro de los limites
+        comida.goto(x , y)
 
     # Se hace uso de la función movimiento
     movimiento()
