@@ -168,6 +168,37 @@ while True:
         # Se agrega una rapidez de 0 a la nuevoCuerpo
         nuevoCuerpo.speed(0)
 
+        # Se le agrega a la lista "Cuerpo" el objeto "Nuevo cuerpo"
+        cuerpo.append(nuevoCuerpo)
+
+    # Se crea una variable "total" que devuelva la medida del cuerpo
+    total = len(cuerpo)
+
+    # Se crea un ciclo for para recorrer la lista "Cuerpo"
+    # La lectura comienza a la inversa, obviando la posición 0 y contando de 1 en 1.
+    for i in range(total - 1, 0, -1):
+
+        # Se obtiene la coordenada "X" del nuevo objeto, es decir del nuevo cuerpo de la serpiente
+        x = cuerpo[i - 1].xcor()
+
+        # Se obtiene la coordenada "X" del nuevo objeto, es decir del nuevo cuerpo de la serpiente
+        y = cuerpo[i - 1].ycor()
+
+        # Se envía el nuevo cuerpo a la par de la serpiente 
+        cuerpo[i].goto(x , y)
+
+    # Si existe más de un elemento en la lista "cuerpo"
+    if total > 0:
+        
+        # Se obtiene la coordenada "X" del objeto serpiente
+        x = serpiente.xcor()
+
+        # Se obtiene la coordenada "Y" del objeto serpiente
+        y = serpiente.ycor()
+
+        # Se envia el cuerpo a dicha coordenada
+        cuerpo[0].goto(x , y)
+
     # Se hace uso de la función movimiento
     movimiento()
 
