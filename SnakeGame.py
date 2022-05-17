@@ -138,6 +138,34 @@ while True:
     # Actualizamos la pantalla con cada movimiento de la serpiente
     screen.update()
 
+    # Se crea la condición que indica, que sí la serpiente choca con los bordes de la pantalla
+    # Se reinicia el juego
+    if (serpiente.xcor() > 300 or
+    serpiente.xcor() < -300 or
+    serpiente.ycor() > 300 or
+    serpiente.ycor() < -300):
+        
+        # Se congela la pantalla por dos segundos
+        time.sleep(2)
+
+        # Se recorre la lista "cuerpo"
+        for i in cuerpo:
+
+            # Se elimina cada uno de los objetos creados en los espacios de la lista
+            i.clear()
+
+            # Se oculta el objeto
+            i.hideturtle()
+
+        # Se envia la serpiente al punto inicial
+        serpiente.home()
+
+        # Se le indica a la serpiente que debe permanecer estática
+        serpiente.direction = 'stop'
+
+        # Se elimina el cuerpo
+        cuerpo.clear()
+
     # Se crea un ciclo que genera coordenadas (x,y) aleatorias si la comida y la serpiente tienen contacto
     if serpiente.distance(comida) < 20:
 
@@ -201,6 +229,30 @@ while True:
 
     # Se hace uso de la función movimiento
     movimiento()
+
+    # Se crea el ciclo, para validar la colisión contra el cuerpo
+    for i in cuerpo:
+        
+        # Si uno de los segmentos de la lista "cuerpo" se toca con "serpiente"
+        if i.distance(serpiente) < 20:
+
+            # Se recorre nuevamente la lista "cuerpo"
+            for i in cuerpo:
+
+                # Se elimina cada uno de los objetos creados en los espacios de la lista
+                i.clear()
+
+                # Se oculta el objeto
+                i.hideturtle()
+            
+            # Se envia a la serpiente a la posición inicial
+            serpiente.home()
+
+            # Se "elimina" el "cuerpo" que es basicamente limpiar la lista.
+            cuerpo.clear()
+
+            # Se le indica a la serpiente que debe permanecer estática
+            serpiente.direction = 'stop'
 
     # Se agrega un delay al movimiento de la serpiente
     time.sleep(retraso)
