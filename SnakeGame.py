@@ -57,6 +57,9 @@ comida.goto(0 , 100)
 # Se agrega una rapidez de 0 a la comida
 comida.speed(0)
 
+# Se crea una lista (vector) vacío que contendrá el cuerpo.
+cuerpo = []
+
 # Se crea la función que va a determinar el movimiento hacia arriba
 def arriba():
 
@@ -146,6 +149,24 @@ while True:
 
         # La comida es enviada a las coordenadas aleatorias dentro de los limites
         comida.goto(x , y)
+
+        # Se instancia el objeto de "nuevoCuerpo"
+        nuevoCuerpo = turtle.Turtle()
+
+        # Se le asigna la forma al nuevoCuerpo en este caso 'square' = cuadrado
+        nuevoCuerpo.shape('square')
+
+        # Se le asigna el color al nuevoCuerpo
+        nuevoCuerpo.color('green')
+
+        # Se usa la función penup para que el "nuevoCuerpo" no vaya a dibujar el rastro por donde pasa
+        nuevoCuerpo.penup()
+
+        # Se envia al nuevoCuerpo al punto dado al comienzo del juego
+        nuevoCuerpo.goto(0 , 0)
+
+        # Se agrega una rapidez de 0 a la nuevoCuerpo
+        nuevoCuerpo.speed(0)
 
     # Se hace uso de la función movimiento
     movimiento()
