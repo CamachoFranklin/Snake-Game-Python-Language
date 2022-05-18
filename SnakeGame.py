@@ -46,7 +46,7 @@ serpiente.goto(0 , 0)
 serpiente.direction = 'stop'
 
 # Se le asigna el color a la serpiente
-serpiente.color('white')
+serpiente.color('lightgreen')
 
 # Se instancia el objeto de "comida"
 comida = turtle.Turtle()
@@ -95,26 +95,38 @@ texto.write("Puntaje: 0\tPuntaje más alto: 0", align = "center", font=("verdana
 # Se crea la función que va a determinar el movimiento hacia arriba
 def arriba():
 
-    # Se le asigna el movimiento hacia arriba a la variable
-    serpiente.direction = 'up'
+    # Se valida que si la serpiente no pueda cambiar a la dirección contraría que se está moviendo
+    if serpiente.direction != 'down':
+
+        # Se le asigna el movimiento hacia arriba a la variable
+        serpiente.direction = 'up'
 
 # Se crea la función que va a determinar el movimiento hacia arriba
 def abajo():
 
-    # Se le asigna el movimiento hacia abajo a la variable
-    serpiente.direction = 'down'
+    # Se valida que si la serpiente no pueda cambiar a la dirección contraría que se está moviendo
+    if serpiente.direction != 'up':
+
+        # Se le asigna el movimiento hacia abajo a la variable
+        serpiente.direction = 'down'
 
 # Se crea la función que va a determinar el movimiento hacia la derecha
 def derecha():
 
-    # Se le asigna el movimiento hacia la derecha a la variable
-    serpiente.direction = 'right'
+    # Se valida que si la serpiente no pueda cambiar a la dirección contraría que se está moviendo
+    if serpiente.direction != 'left':
+
+        # Se le asigna el movimiento hacia la derecha a la variable
+        serpiente.direction = 'right'
 
 # Se crea la función que va a determinar el movimiento hacia la izquierda
 def izquierda():
 
-    # Se le asigna el movimiento hacia la izquierda a la variable
-    serpiente.direction = 'left'
+    # Se valida que si la serpiente no pueda cambiar a la dirección contraría que se está moviendo
+    if serpiente.direction != 'right':
+
+        # Se le asigna el movimiento hacia la izquierda a la variable
+        serpiente.direction = 'left'
 
 # Se crea la función de movimiento
 def movimiento():
@@ -159,9 +171,16 @@ def movimiento():
 screen.listen()
 
 # onkeypress recibe por parametro la función que activará al presionar la tecla indicada
+# Si la tecla presionada es "arriba" se activa el movimiento de la serpiente hacia esa dirección
 screen.onkeypress(arriba, "Up")
+
+# Si la tecla presionada es "abajo" se activa el movimiento de la serpiente hacia esa dirección
 screen.onkeypress(abajo, "Down")
+
+# Si la tecla presionada es "derecha" se activa el movimiento de la serpiente hacia esa dirección
 screen.onkeypress(derecha, "Right")
+
+# Si la tecla presionada es "izquierda" se activa el movimiento de la serpiente hacia esa dirección
 screen.onkeypress(izquierda, "Left")
 
 # Ciclo que actualiza la pantalla con cada movimiento de la serpiente
@@ -228,7 +247,7 @@ while True:
         nuevoCuerpo.shape('square')
 
         # Se le asigna el color al nuevoCuerpo
-        nuevoCuerpo.color('gray')
+        nuevoCuerpo.color('green')
 
         # Se usa la función penup para que el "nuevoCuerpo" no vaya a dibujar el rastro por donde pasa
         nuevoCuerpo.penup()
